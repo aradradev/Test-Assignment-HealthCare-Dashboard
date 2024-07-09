@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>HealthCare Dashboard</title>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="header__left">
+                <img src="images/TestLogo.svg" alt="logo" class="logo">
+            </div>
+            <div class="header__center">
+                <nav class="nav">
+                    <div class="overview">
+                        <img src="images/home_FILL0_wght300_GRAD0_opsz24.svg" alt="home">
+                        <a href="#" class="nav_link">Overview</a>
+                    </div>
+                    <div class="patients active">
+                        <img src="images/group_FILL0_wght300_GRAD0_opsz24.svg" alt="patients">
+                        <a href="#" class="nav_link">Patients</a>
+                    </div>
+                    <div class="schedule">
+                        <img src="images/calendar_today_FILL0_wght300_GRAD0_opsz24.svg" alt="calendar">
+                        <a href="#" class="nav_link">Schedule</a>
+                    </div>
+                    <div class="message">
+                        <img src="images/chat_bubble_FILL0_wght300_GRAD0_opsz24.svg" alt="chat">
+                        <a href="#" class="nav_link">Message</a>
+                    </div>
+                    <div class="credit">
+                        <img src="images/credit_card_FILL0_wght300_GRAD0_opsz24.svg" alt="credit">
+                        <a href="#" class="nav_link">Transactions</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="header__right">
+                <img src="images/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc.png" alt="senior doctor">
+                <div class="doctor_info">
+                    <div class="doc-name">Dr. Jane Doe</div>
+                    <div class="doc-title">Cardiologist</div>
+                </div>
+                <img src="images/settings_FILL0_wght300_GRAD0_opsz24.svg" alt="setting" class="icon-settings">
+                <img src="images/more_vert_FILL0_wght300_GRAD0_opsz24.svg" alt="more_vert" class="icon-more">
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="grid-container">
+                <!-- Left column patient List -->
+                <aside class="patient-list">
+                    <div class="patient-header">
+                        <h2>Patient List</h2>
+                        <img src="images/search_FILL0_wght300_GRAD0_opsz24.svg" alt="search">
+                    </div>
+                    <div class="patient" id="patient-template" style="display: none;">
+                        <div class="patient-info">
+                            <img src="" alt="patient" class="patient-img">
+                            <div class="patient-name"></div>
+                            <div class="patient-status"></div>
+                        </div>
+                        <img src="images/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more horiz">
+                    </div>
+                    <div id="patient-list"></div>
+                </aside>
+        
+                <!-- Center column: Diagnose History and Cards -->
+                <section class="diagnosis-history">
+                    <h2>Diagnose History</h2>
+                    <div class="chart-container">
+                        <canvas id="patient-chart"></canvas>
+                    </div>
+                    <div class="cards">
+                        <div class="card">
+                            <img src="images/respiratory rate.svg" alt="respiratory">
+                            <p>Respiratory Rate</p>
+                            <h4 id="respiratory-rate">-</h4>
+                            <p id="respiratory-status">-</p>
+                        </div>
+                        <div class="card">
+                            <img src="images/temperature.svg" alt="temperature">
+                            <p>Temperature</p>
+                            <h4 id="temperature">-</h4>
+                            <p id="temperature-status">-</p>
+                        </div>
+                        <div class="card">
+                            <img src="images/HeartBPM.svg" alt="heart">
+                            <p>Heart Rate</p>
+                            <h4 id="heart-rate">-</h4>
+                            <p id="heart-status">-</p>
+                        </div>
+                    </div>
+                    <div class="diagnosis-list">
+                        <h3>Diagnose List</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Problem/Diagnose</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="diagnosis-list">
+                                <!-- Diagnoses will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+        
+                <!-- Right Column: Patient Details start here -->
+                <aside class="patient-details">
+                    <div class="patient-card">
+                        <img id="patient-image" src="" alt="patient image">
+                        <h2 id="patient-name"></h2>
+                        <div class="info">
+                            <img src="images/calendar_today_FILL0_wght300_GRAD0_opsz24.svg" alt="calendar">
+                            <div class="details">
+                                <p>Date of Birth</p>
+                                <div id="date-of-birth" class="text-bold"></div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <img src="images/MaleIcon.svg" alt="gender">
+                            <div class="details">
+                                <p>Gender</p>
+                                <div id="gender" class="text-bold"></div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <img src="images/PhoneIcon.svg" alt="phone">
+                            <div class="details">
+                                <p>Phone Number</p>
+                                <div id="phone-number" class="text-bold"></div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <img src="images/PhoneIcon.svg" alt="emergency">
+                            <div class="details">
+                                <p>Emergency Contact</p>
+                                <div id="emergency-contact" class="text-bold">(415) 555-5678</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <img src="images/InsuranceIcon.svg" alt="insurance">
+                            <div class="details">
+                                <p>Insurance Type</p>
+                                <div id="insurance-type" class="text-bold"></div>
+                            </div>
+                        </div>
+                        <button>Show All Information</button>
+                    </div>
+                    <div class="lab-results">
+                        <h3>Lab Result</h3>
+                        <div id="lab-results">
+                            <!-- Lab results will be added here -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="foot-end">&copy; 2024 Coalition Technologies with ❤️ by Abdul</footer>
+        
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
